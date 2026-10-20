@@ -13,8 +13,8 @@
  */
 
 const SUPABASE_REF = process.env.SUPABASE_PROJECT_REF ?? "imwsoftnxhrhazgranay";
-const GIT_REPO = process.env.GIT_REPO ?? "felipegarzonc/7kingdomslabs";
-const GIT_BRANCH = process.env.GIT_BRANCH ?? "claude/bombadil-longevity-coach-ef7aiv";
+const GIT_REPO = process.env.GIT_REPO ?? "felipegarzonc/bombadil";
+const GIT_BRANCH = process.env.GIT_BRANCH ?? "main";
 const PROJECT = process.env.VERCEL_PROJECT ?? "bombadil";
 
 const vt = need("VERCEL_TOKEN");
@@ -78,7 +78,7 @@ async function main() {
     try {
       project = await api<Project>(V, vt, `/v11/projects${q}`, {
         method: "POST",
-        body: JSON.stringify({ name: PROJECT, framework: "nextjs", rootDirectory: "bombadil", gitRepository: { type: "github", repo: GIT_REPO } }),
+        body: JSON.stringify({ name: PROJECT, framework: "nextjs", rootDirectory: null, gitRepository: { type: "github", repo: GIT_REPO } }),
       });
     } catch (err) {
       fail(
@@ -86,7 +86,7 @@ async function main() {
       );
     }
   }
-  await api(V, vt, `/v9/projects/${project.id}${q}`, { method: "PATCH", body: JSON.stringify({ rootDirectory: "bombadil", framework: "nextjs" }) });
+  await api(V, vt, `/v9/projects/${project.id}${q}`, { method: "PATCH", body: JSON.stringify({ rootDirectory: null, framework: "nextjs" }) });
 
   // ── Env vars (upsert) ──
   const domains = await api<{ domains: Array<{ name: string }> }>(V, vt, `/v9/projects/${project.id}/domains${q}`).catch(() => ({ domains: [] }));

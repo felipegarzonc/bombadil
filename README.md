@@ -40,8 +40,7 @@ Claude API (`@anthropic-ai/sdk`, salidas validadas con Zod) · Tailwind 4 · Rec
 Necesitas **Node 20+** y **Docker Desktop** abierto. Todo corre en tu máquina con datos sintéticos.
 
 ```bash
-git clone https://github.com/felipegarzonc/7kingdomslabs.git
-cd 7kingdomslabs && git checkout claude/bombadil-longevity-coach-ef7aiv
+git clone https://github.com/felipegarzonc/bombadil.git
 cd bombadil
 npm install
 npx supabase start          # Postgres + Auth + Storage locales; aplica migraciones y catálogo
